@@ -23,6 +23,7 @@ public class SwipecartHandler {
 
 	@Autowired
 	SwipecartServices swipecartservice;
+	
 	List<CartItem> cartitem=new ArrayList<CartItem>();
 	 @PostMapping(value="/Swipecart/api/AddtoCart", produces = javax.ws.rs.core.MediaType.APPLICATION_JSON)
 	 public ResponseEntity<Object> getCartList(@RequestBody CartItem cartitem, HttpServletResponse res, HttpStatus status){
@@ -30,6 +31,7 @@ public class SwipecartHandler {
 		 return new ResponseEntity<Object>(cartitem,HttpStatus.OK);
 		 
 	 }
+	 
 	 
 	 @GetMapping(value="/Swipecart/api/GETSwipecartitems", produces = javax.ws.rs.core.MediaType.APPLICATION_JSON)
 	 public ResponseEntity<Object> getCartItems(HttpStatus status, HttpServletResponse res){
@@ -45,6 +47,7 @@ public class SwipecartHandler {
 		 HashMap<String, String> hm=new HashMap<String, String>();
 		 swipecartservice.RemoveItem(id);
 		 hm.put("Message", "Item deleted successfully");
+//		 cartitem= swipecartservice.getSwipecrtitems();
 		 return new ResponseEntity<Object>(hm,status.OK);
 		 
 	 }
