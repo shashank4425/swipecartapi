@@ -48,7 +48,7 @@ public class UserAuthHandler {
 		return new ResponseEntity<Object>(hm,HttpStatus.OK);
 	}
 	@PostMapping(value="/Swipecart/api-register_auth", produces = MediaType.APPLICATION_JSON)
-	public ResponseEntity<Object> VerifyUser(user add_user, HttpSession session, HttpServletResponse res){
+	public ResponseEntity<Object> VerifyUser(@RequestBody user add_user, HttpSession session, HttpServletResponse res){
 		HashMap<String, Object> hm=new HashMap<String, Object>();
 		List<Object> lists=new ArrayList<Object>();
 		   		
@@ -58,7 +58,7 @@ public class UserAuthHandler {
 		return new ResponseEntity<Object>(hm,HttpStatus.OK);
 	}
 	@PostMapping(value="/Swipecart/api-user_loginauth", produces = MediaType.APPLICATION_JSON)
-	public ResponseEntity<Object> loginUser(@ModelAttribute user user,HttpSession session,HttpServletResponse res) throws NotFoundException{
+	public ResponseEntity<Object> loginUser(@RequestBody user user,HttpSession session,HttpServletResponse res) throws NotFoundException{
 		HashMap<String, Object> hm=new HashMap<String, Object>();
 		List<user> users=new ArrayList<user>();
 		List<Object> lists=new ArrayList<Object>();
