@@ -13,8 +13,8 @@ public class UserAuthService {
 	@Autowired
 	swipcartUserDataImpl userdataImpl;
 
-	public List<user> UserAuthLogin(String emailid,String password) throws NotFoundException {
-		List<user> users=userdataImpl.findByemailId(emailid, password);
+	public List<user> UserAuthLogin(String EMAIL_ID,String PASSWORD) throws NotFoundException {
+		List<user> users=userdataImpl.findByemailId(EMAIL_ID, PASSWORD);
 		if(users == null) {
 			 throw new NotFoundException("not found emailid");
 		}
