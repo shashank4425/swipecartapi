@@ -63,7 +63,7 @@ public class UserAuthHandler {
 		HashMap<String, Object> hm=new HashMap<String, Object>();
 		List<user> user=new ArrayList<user>();
 		List<Object> lists=new ArrayList<Object>();
-				
+				System.out.println(users);
 		user=userAuthservice.UserAuthLogin(emailid,password);
 	   if(user.size()>0) {
 		    hm.put("resCode","0");
