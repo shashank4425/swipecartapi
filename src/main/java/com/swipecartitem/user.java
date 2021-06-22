@@ -18,17 +18,17 @@ public class user {
 	@Column(name="LASTNAME")
 	 private String lastname;
 	@Column(name="EMAIL_ID")
-	 private String emailId;
+	 private String emailid;
 	@Column(name="PASSWORD")
-	 private String Password;
+	 private String password;
 	@Column(name="CONFIRM_PASSWORD")
-	 private String confirmPassword;
+	 private String confirmpassword;
 	@Column(name="MOB_NUMBER")
-	 private String mobNumber;
+	 private String mobnumber;
 	@Column(name="FIRST_LINE_ADDRESS")
-	 private String firstLineAddress;
+	 private String firstlineaddress;
 	@Column(name="LAST_LINE_ADDRESS")
-	 private String lastLineAddress;
+	 private String lastlineaddress;
 	@Column(name="OTP")
 	 String otp;
 		
@@ -53,40 +53,40 @@ public class user {
 		this.lastname = lastname;
 	}
 	public String getEmailId() {
-		return emailId;
+		return emailid;
 	}
 	public void setEmailId(String emailId) {
-		this.emailId = emailId;
+		this.emailid = emailId;
 	}
 	public String getPassword() {
-		return Password;
+		return password;
 	}
 	public void setPassword(String Password) {
-		this.Password = Password;
+		this.password = Password;
 	}
 	public String getConfirmPassword() {
-		return confirmPassword;
+		return confirmpassword;
 	}
-	public void setConfirmPassword(String confirmPassword) {
-		this.confirmPassword = confirmPassword;
+	public void setConfirmPassword(String confirmpassword) {
+		this.confirmpassword = confirmpassword;
 	}
 	public String getMobNumber() {
-		return mobNumber;
+		return mobnumber;
 	}
-	public void setMobNumber(String mobNumber) {
-		this.mobNumber = mobNumber;
+	public void setMobNumber(String mobnumber) {
+		this.mobnumber = mobnumber;
 	}
 	public String getFirstLineAddress() {
-		return firstLineAddress;
+		return firstlineaddress;
 	}
 	public void setFirstLineAddress(String firstLineAddress) {
-		this.firstLineAddress = firstLineAddress;
+		this.firstlineaddress = firstlineaddress;
 	}
 	public String getLastLineAddress() {
-		return lastLineAddress;
+		return lastlineaddress;
 	}
-	public void setLastLineAddress(String lastLineAddress) {
-		this.lastLineAddress = lastLineAddress;
+	public void setLastLineAddress(String lastlineaddress) {
+		this.lastlineaddress = lastlineaddress;
 	}
 	
 	public String getOtp() {
@@ -97,9 +97,9 @@ public class user {
 	}
 	@Override
 	public String toString() {
-		return "user [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", emailId=" + emailId
-				+ ", Password=" + Password + ", confirmPassword=" + confirmPassword + ", mobNumber=" + mobNumber
-				+ ", firstLineAddress=" + firstLineAddress + ", lastLineAddress=" + lastLineAddress + "]";
+		return "user [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", emailId=" + emailid
+				+ ", Password=" + password + ", confirmPassword=" + confirmpassword + ", mobNumber=" + mobnumber
+				+ ", firstLineAddress=" + firstlineaddress + ", lastLineAddress=" + lastlineaddress + "]";
 	}
 	
 }

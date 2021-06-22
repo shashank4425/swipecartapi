@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,12 +45,11 @@ public class UserAuthHandler {
 		return new ResponseEntity<Object>(hm,HttpStatus.OK);
 	}
 	@PostMapping(value="/Swipecart/api-register_auth", produces = MediaType.APPLICATION_JSON)
-	public ResponseEntity<Object> VerifyUser(@RequestParam("emailId") String emailId,@RequestParam("password") String Password, @RequestParam("confirmpassword") String confirmPassword,@RequestParam("otp") String otppin,HttpSession session, HttpServletResponse res){
+	public ResponseEntity<Object> VerifyUser(@RequestBody user add_user,@RequestParam("emailId") String emailId,@RequestParam("password") String Password, @RequestParam("confirmpassword") String confirmPassword,@RequestParam("otp") String otppin,HttpSession session, HttpServletResponse res){
 		HashMap<String, Object> hm=new HashMap<String, Object>();
 		List<Object> lists=new ArrayList<Object>();
 		
 		
-			user add_user=new user();
 			add_user.setEmailId(emailId);
 			add_user.setPassword(Password);
 			add_user.setConfirmPassword(confirmPassword);
