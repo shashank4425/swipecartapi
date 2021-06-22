@@ -29,6 +29,10 @@ public class UserAuthService {
 		// TODO Auto-generated method stub
 		userdataImpl.deleteById(id);
 	}
+	public List<user> getUsers() {
+		
+		return userdataImpl.findAll();
+	}
 	
 	
 	  

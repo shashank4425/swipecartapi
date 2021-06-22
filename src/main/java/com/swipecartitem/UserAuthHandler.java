@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,6 +38,8 @@ public class UserAuthHandler {
 
 	@Autowired
 	UserAuthService userAuthservice;
+	
+	List<user> user_List=new ArrayList<user>();
 	
 	@RequestMapping(value="/Swipecart/api-user-auth_token", produces = MediaType.APPLICATION_JSON)
 	public ResponseEntity<Object> UserAuthorisation(HttpSession session,HttpServletResponse res) throws NotFoundException{
@@ -80,6 +83,14 @@ public class UserAuthHandler {
 		 userAuthservice.RemoveUser(id);
 		 hm.put("Message", "User deleted successfully");
 		 return new ResponseEntity<Object>(hm,status.OK);
+		 
+	 }
+	 
+	 @GetMapping(value="/Swipecart/api/getUsers", produces = javax.ws.rs.core.MediaType.APPLICATION_JSON)
+	 public ResponseEntity<Object> GetUsers(HttpStatus status){
+		 HashMap<String, String> hm=new HashMap<String, String>();
+		 user_List=userAuthservice.getUsers();
+		 return new ResponseEntity<Object>(user_List,status.OK);
 		 
 	 }
 }
