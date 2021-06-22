@@ -45,13 +45,13 @@ public class UserAuthHandler {
 		return new ResponseEntity<Object>(hm,HttpStatus.OK);
 	}
 	@PostMapping(value="/Swipecart/api-register_auth", produces = MediaType.APPLICATION_JSON)
-	public ResponseEntity<Object> VerifyUser(user add_user, @RequestParam("emailId") String emailId,@RequestParam("password") String Password, @RequestParam("confirmpassword") String confirmPassword,@RequestParam("otp") String otppin,HttpSession session, HttpServletResponse res){
+	public ResponseEntity<Object> VerifyUser(user add_user, @RequestParam("emailid") String emailid,@RequestParam("password") String password, @RequestParam("confirmpassword") String confirmpassword,HttpSession session, HttpServletResponse res){
 		HashMap<String, Object> hm=new HashMap<String, Object>();
 		List<Object> lists=new ArrayList<Object>();
 		   
-		     add_user.setEmailId(emailId);
-		     add_user.setPassword(Password);
-		     add_user.setConfirmPassword(confirmPassword);
+		     add_user.setEmailId(emailid);
+		     add_user.setPassword(password);
+		     add_user.setConfirmPassword(confirmpassword);
 			
 			userAuthservice.addUser(add_user);
 			session.setAttribute("userId",add_user.getId());
