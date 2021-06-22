@@ -55,16 +55,16 @@ public class UserAuthHandler {
 		return new ResponseEntity<Object>(hm,HttpStatus.OK);
 	}
 	@PostMapping(value="/Swipecart/api-user_loginauth", produces = MediaType.APPLICATION_JSON)
-	public ResponseEntity<Object> loginUser(@ModelAttribute user users,HttpSession session,HttpServletResponse res) throws NotFoundException{
+	public ResponseEntity<Object> loginUser(@ModelAttribute user user,HttpSession session,HttpServletResponse res) throws NotFoundException{
 		HashMap<String, Object> hm=new HashMap<String, Object>();
-		List<user> user=new ArrayList<user>();
+		List<user> users=new ArrayList<user>();
 		List<Object> lists=new ArrayList<Object>();
-				System.out.println(users);
-		user=userAuthservice.UserAuthLogin(users.getEmailId(),users.getPassword());
-	   if(user.size()>0) {
+				System.out.println(user);
+		users=userAuthservice.UserAuthLogin(user.getEmailId());
+	   if(users.size()>0) {
 		    hm.put("resCode","0");
 		    hm.put("resSatus",res.getStatus());
-		    session.setAttribute("userId",user.get(0).id);
+		    session.setAttribute("userId",users.get(0).id);
 	   }
 	   else {
 		   hm.put("resCode","1");

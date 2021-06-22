@@ -10,6 +10,6 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface swipcartUserDataImpl extends JpaRepository<user, Long>{
 
-	@Query("FROM USER_TB WHERE EMAIL_ID = ?1 AND PASSWORD = ?2")
-	List<user> findByemailId(@PathParam("emailid") String emailid,@PathParam("password") String password);
+	@Query("SELECT * FROM USER_TB user WHERE user.EMAIL_ID =:EMAIL_ID")
+	List<user> findByemailId(@PathParam("emailid") String emailid);
 }
