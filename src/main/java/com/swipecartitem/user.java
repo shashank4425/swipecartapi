@@ -31,15 +31,12 @@ public class user {
 	 private String lastlineaddress;
 	@Column(name="OTP")
 	 String otp;
-		
-	
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
 	public String getFirstname() {
 		return firstname;
 	}
@@ -52,43 +49,42 @@ public class user {
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-	public String getEmailId() {
+	public String getEmailid() {
 		return emailid;
 	}
-	public void setEmailId(String emailId) {
-		this.emailid = emailId;
+	public void setEmailid(String emailid) {
+		this.emailid = emailid;
 	}
 	public String getPassword() {
 		return password;
 	}
-	public void setPassword(String Password) {
-		this.password = Password;
+	public void setPassword(String password) {
+		this.password = password;
 	}
-	public String getConfirmPassword() {
+	public String getConfirmpassword() {
 		return confirmpassword;
 	}
-	public void setConfirmPassword(String confirmpassword) {
+	public void setConfirmpassword(String confirmpassword) {
 		this.confirmpassword = confirmpassword;
 	}
-	public String getMobNumber() {
+	public String getMobnumber() {
 		return mobnumber;
 	}
-	public void setMobNumber(String mobnumber) {
+	public void setMobnumber(String mobnumber) {
 		this.mobnumber = mobnumber;
 	}
-	public String getFirstLineAddress() {
+	public String getFirstlineaddress() {
 		return firstlineaddress;
 	}
-	public void setFirstLineAddress(String firstLineAddress) {
+	public void setFirstlineaddress(String firstlineaddress) {
 		this.firstlineaddress = firstlineaddress;
 	}
-	public String getLastLineAddress() {
+	public String getLastlineaddress() {
 		return lastlineaddress;
 	}
-	public void setLastLineAddress(String lastlineaddress) {
+	public void setLastlineaddress(String lastlineaddress) {
 		this.lastlineaddress = lastlineaddress;
 	}
-	
 	public String getOtp() {
 		return otp;
 	}
@@ -97,9 +93,9 @@ public class user {
 	}
 	@Override
 	public String toString() {
-		return "user [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", emailId=" + emailid
-				+ ", Password=" + password + ", confirmPassword=" + confirmpassword + ", mobNumber=" + mobnumber
-				+ ", firstLineAddress=" + firstlineaddress + ", lastLineAddress=" + lastlineaddress + "]";
-	}
-	
+		return "user [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", emailid=" + emailid
+				+ ", password=" + password + ", confirmpassword=" + confirmpassword + ", mobnumber=" + mobnumber
+				+ ", firstlineaddress=" + firstlineaddress + ", lastlineaddress=" + lastlineaddress + ", otp=" + otp
+				+ "]";
+	}	
 }

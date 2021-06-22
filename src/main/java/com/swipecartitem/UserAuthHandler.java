@@ -63,7 +63,7 @@ public class UserAuthHandler {
 		List<user> users=new ArrayList<user>();
 		List<Object> lists=new ArrayList<Object>();
 				System.out.println(user);
-		users=userAuthservice.UserAuthLogin(user.getEmailId(), user.getPassword());
+		users=userAuthservice.UserAuthLogin(user.getEmailid(), user.getPassword());
 	   if(users.size()>0) {
 		    hm.put("resCode","0");
 		    hm.put("resSatus",res.getStatus());
