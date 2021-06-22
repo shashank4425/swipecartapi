@@ -48,11 +48,7 @@ public class UserAuthHandler {
 	public ResponseEntity<Object> VerifyUser(user add_user, HttpSession session, HttpServletResponse res){
 		HashMap<String, Object> hm=new HashMap<String, Object>();
 		List<Object> lists=new ArrayList<Object>();
-		   
-		     //add_user.setEmailId(emailid);
-		     //add_user.setPassword(password);
-		     //add_user.setConfirmPassword(confirmpassword);
-			
+		   		
 			userAuthservice.addUser(add_user);
 			session.setAttribute("userId",add_user.getId());
 			
