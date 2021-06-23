@@ -54,6 +54,7 @@ public class UserAuthHandler {
 		   		
 			userAuthservice.addUser(add_user);
 			session.setAttribute("userId",add_user.getId());
+			System.out.println(session.getAttribute("userId"));
 			
 		return new ResponseEntity<Object>(hm,HttpStatus.OK);
 	}
@@ -68,6 +69,7 @@ public class UserAuthHandler {
 		    hm.put("resCode","0");
 		    hm.put("resSatus",res.getStatus());
 		    session.setAttribute("userId",users.get(0).id);
+		    System.out.println(session.getAttribute("userId"));
 	   }
 	   else {
 		   hm.put("resCode","1");
