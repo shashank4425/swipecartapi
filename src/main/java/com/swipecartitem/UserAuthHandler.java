@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import javassist.NotFoundException;
 
@@ -81,7 +82,14 @@ public class UserAuthHandler {
 	   }
 		return new ResponseEntity<Object>(hm,HttpStatus.OK);
 	}
-	
+	@RequestMapping(value="/Swipecart/api/api-logout_auth", produces = MediaType.APPLICATION_JSON)
+	public ResponseEntity<Object> logouUser(HttpSession session,HttpServletResponse res,HttpStatus status) throws NotFoundException{
+		HashMap<String, Object> hm=new HashMap<String, Object>();
+		session.removeAttribute("userId");
+		 hm.put("sessionId", session.getAttribute("userId"));
+		 hm.put("resMess", "You have successfully logged out");
+		return new ResponseEntity<Object>(hm,status.OK);
+	}
 	 @DeleteMapping(value="/Swipecart/api/RemoveUser/{id}", produces = javax.ws.rs.core.MediaType.APPLICATION_JSON)
 	 public ResponseEntity<Object> RemoveItem(@PathVariable Long id,HttpStatus status){
 		 HashMap<String, String> hm=new HashMap<String, String>();
