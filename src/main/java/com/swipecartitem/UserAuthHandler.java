@@ -55,8 +55,6 @@ public class UserAuthHandler {
 		   		
 			userAuthservice.addUser(add_user);
 			session.setAttribute("userId",add_user.getId());
-			Object num=session.getAttribute("userId");
-		    hm.put("sessionId", num);
 		return new ResponseEntity<Object>(hm,HttpStatus.OK);
 	}
 	@PostMapping(value="/Swipecart/api-user_loginauth", produces = MediaType.APPLICATION_JSON)
@@ -64,16 +62,12 @@ public class UserAuthHandler {
 		HashMap<String, Object> hm=new HashMap<String, Object>();
 		List<user> users=new ArrayList<user>();
 		List<Object> lists=new ArrayList<Object>();
-				System.out.println(user);
 		users=userAuthservice.UserAuthLogin(user.getEmailid(), user.getPassword());
 		
 	   if(users.size()>0) {
-		    hm.put("resCode","0");
+		   hm.put("resCode","0");
 		    hm.put("resSatus",res.getStatus());
-		    session.setAttribute("userId",users.get(0).id);
-		    Object num=session.getAttribute("userId");
-		    hm.put("sessionId", num);
-		    System.out.println(session);
+		    session.setAttribute("userId",user.getId());
 	   }
 	   else {
 		   hm.put("resCode","1");
