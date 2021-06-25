@@ -41,7 +41,7 @@ public class UserAuthHandler {
 	UserAuthService userAuthservice;
 	
 	List<user> user_List=new ArrayList<user>();
-	
+	boolean sessionStatus=false;
 	@RequestMapping(value="/Swipecart/api-user-auth_token", produces = MediaType.APPLICATION_JSON)
 	public ResponseEntity<Object> UserAuthorisation(HttpSession session,HttpServletResponse res) throws NotFoundException{
 		HashMap<String, Object> hm=new HashMap<String, Object>();
@@ -53,7 +53,12 @@ public class UserAuthHandler {
 		HashMap<String, Object> hm=new HashMap<String, Object>();
 		List<Object> lists=new ArrayList<Object>();
 		   		
-			userAuthservice.addUser(add_user);
+		    userAuthservice.addUser(add_user);
+		    sessionStatus=true;
+			 hm.put("resCode","0");
+			 hm.put("resMess","Registration completed");
+			 hm.put("resSatus",res.getStatus());
+			 hm.put("sessionStatus", sessionStatus);	    
 			session.setAttribute("userId",add_user.getId());
 		return new ResponseEntity<Object>(hm,HttpStatus.OK);
 	}
@@ -63,11 +68,11 @@ public class UserAuthHandler {
 		List<user> users=new ArrayList<user>();
 		List<Object> lists=new ArrayList<Object>();
 		users=userAuthservice.UserAuthLogin(user.getEmailid(), user.getPassword());
-		
 	   if(users.size()>0) {
+		   sessionStatus=true;
 		   hm.put("resCode","0");
 		    hm.put("resSatus",res.getStatus());
-		    session.setAttribute("userId",user.getId());
+		    hm.put("sessionStatus", sessionStatus);	    
 	   }
 	   else {
 		   hm.put("resCode","1");
@@ -80,6 +85,7 @@ public class UserAuthHandler {
 	public ResponseEntity<Object> logouUser(HttpSession session,HttpServletResponse res,HttpStatus status) throws NotFoundException{
 		HashMap<String, Object> hm=new HashMap<String, Object>();
 		session.removeAttribute("userId");
+		 hm.put("sessionStatus", sessionStatus);	
 		 hm.put("sessionId", session.getAttribute("userId"));
 		 hm.put("resMess", "You have successfully logged out");
 		return new ResponseEntity<Object>(hm,status.OK);
