@@ -65,7 +65,7 @@ public class UserAuthHandler {
 		return new ResponseEntity<Object>(hm,HttpStatus.OK);
 	}
 	@PostMapping(value="/Swipecart/api-user_loginauth", produces = MediaType.APPLICATION_JSON)
-	public ResponseEntity<Object> loginUser(@RequestBody user user,List<CartItem> cartitem, HttpServletRequest req,HttpSession session,HttpServletResponse res) throws NotFoundException{
+	public ResponseEntity<Object> loginUser(@RequestBody user user,HttpSession session,HttpServletResponse res) throws NotFoundException{
 		HashMap<String, Object> hm=new HashMap<String, Object>();
 		List<user> users=new ArrayList<user>();
 		List<Object> lists=new ArrayList<Object>();
@@ -75,7 +75,6 @@ public class UserAuthHandler {
 		    hm.put("resCode","0");
 		    hm.put("resSatus",res.getStatus());
 		    hm.put("sessionStatus", sessionStatus);
-		    hm.put("cartLength", cartitem.size());
 	   }
 	   else {
 		   hm.put("resCode","1");
