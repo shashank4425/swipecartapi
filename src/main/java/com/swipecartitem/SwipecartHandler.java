@@ -31,7 +31,7 @@ public class SwipecartHandler {
 	boolean sessionStatus=false;
 	
 	List<CartItem> cartitem=new ArrayList<CartItem>();
-	int cartSize=0;
+	List<Integer> cartSize = new ArrayList<>();
 	 @PostMapping(value="/Swipecart/api/AddtoCart", produces = javax.ws.rs.core.MediaType.APPLICATION_JSON)
 	 public ResponseEntity<Object> getCartList(@RequestBody CartItem cartitem, HttpServletResponse res, HttpStatus status){
 		 swipecartservice.AddToCart(cartitem);
@@ -44,7 +44,7 @@ public class SwipecartHandler {
 	 public ResponseEntity<Object> getCartItems(HttpStatus status, HttpServletResponse res){
 	
 		cartitem= swipecartservice.getSwipecrtitems();
-		cartSize=cartitem.size();
+		cartSize.add(cartitem.size());
 		System.out.println(cartitem);
 		 return new ResponseEntity<Object>(cartitem, HttpStatus.OK);
 		 
