@@ -40,9 +40,7 @@ public class UserAuthHandler {
 
 	@Autowired
 	UserAuthService userAuthservice;
-	
-	@Autowired
-	SwipecartServices swipecartservice;
+
 	
 	List<user> user_List=new ArrayList<user>();
 	boolean sessionStatus=false;
@@ -74,7 +72,7 @@ public class UserAuthHandler {
 		users=userAuthservice.UserAuthLogin(user.getEmailid(), user.getPassword());
 	   if(users.size()>0) {
 		   sessionStatus=true;
-		   cartitem= swipecartservice.getSwipecrtitems();			   
+		   cartitem= userAuthservice.getSwipecrtitems();			   
 		    hm.put("resCode","0");
 		    hm.put("resSatus",res.getStatus());
 		    hm.put("sessionStatus", sessionStatus);
