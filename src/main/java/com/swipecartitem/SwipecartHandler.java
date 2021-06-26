@@ -42,11 +42,11 @@ public class SwipecartHandler {
 	 
 	 @GetMapping(value="/Swipecart/api/GETSwipecartitems", produces = javax.ws.rs.core.MediaType.APPLICATION_JSON)
 	 public ResponseEntity<Object> getCartItems(HttpStatus status, HttpServletResponse res){
-	
+		 HashMap<String, Object> hm=new HashMap<String, Object>();
 		cartitem= swipecartservice.getSwipecrtitems();
 		cartSize.add(cartitem.size());
-		System.out.println(cartitem);
-		 return new ResponseEntity<Object>(cartitem, HttpStatus.OK);
+		 hm.put("cartSize", cartSize);
+		 return new ResponseEntity<Object>(hm, HttpStatus.OK);
 		 
 	 }
 	 @PostMapping(value="/Swipecart/api-user_loginauth", produces = MediaType.APPLICATION_JSON)
