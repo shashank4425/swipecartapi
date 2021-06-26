@@ -14,6 +14,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.MediaType;
@@ -40,6 +41,9 @@ public class UserAuthHandler {
 	@Autowired
 	UserAuthService userAuthservice;
 	
+	@Autowired
+	SwipecartServices swipecartservice;
+	
 	List<user> user_List=new ArrayList<user>();
 	boolean sessionStatus=false;
 	@RequestMapping(value="/Swipecart/api-user-auth_token", produces = MediaType.APPLICATION_JSON)
@@ -63,16 +67,19 @@ public class UserAuthHandler {
 		return new ResponseEntity<Object>(hm,HttpStatus.OK);
 	}
 	@PostMapping(value="/Swipecart/api-user_loginauth", produces = MediaType.APPLICATION_JSON)
-	public ResponseEntity<Object> loginUser(@RequestBody user user,HttpSession session,HttpServletResponse res) throws NotFoundException{
+	public ResponseEntity<Object> loginUser(@RequestBody user user,List<CartItem> cartitem, HttpServletRequest req,HttpSession session,HttpServletResponse res) throws NotFoundException{
 		HashMap<String, Object> hm=new HashMap<String, Object>();
 		List<user> users=new ArrayList<user>();
 		List<Object> lists=new ArrayList<Object>();
 		users=userAuthservice.UserAuthLogin(user.getEmailid(), user.getPassword());
 	   if(users.size()>0) {
 		   sessionStatus=true;
-		   hm.put("resCode","0");
+		   cartitem= swipecartservice.getSwipecrtitems();			   
+		    hm.put("resCode","0");
 		    hm.put("resSatus",res.getStatus());
-		    hm.put("sessionStatus", sessionStatus);	    
+		    hm.put("sessionStatus", sessionStatus);
+		    hm.put("cartLength", cartitem.size());
+		    
 	   }
 	   else {
 		   hm.put("resCode","1");
@@ -82,9 +89,8 @@ public class UserAuthHandler {
 		return new ResponseEntity<Object>(hm,HttpStatus.OK);
 	}
 	@RequestMapping(value="/Swipecart/api/api-logout_auth", produces = MediaType.APPLICATION_JSON)
-	public ResponseEntity<Object> logouUser(HttpSession session,HttpServletResponse res,HttpStatus status) throws NotFoundException{
+	public ResponseEntity<Object> logouUser(HttpServletRequest req,HttpSession session,HttpServletResponse res,HttpStatus status) throws NotFoundException{
 		HashMap<String, Object> hm=new HashMap<String, Object>();
-		session.removeAttribute("userId");
 		 hm.put("sessionStatus", sessionStatus);	
 		 hm.put("sessionId", session.getAttribute("userId"));
 		 hm.put("resMess", "You have successfully logged out");
