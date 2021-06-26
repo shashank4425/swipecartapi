@@ -64,25 +64,7 @@ public class UserAuthHandler {
 			session.setAttribute("userId",add_user.getId());
 		return new ResponseEntity<Object>(hm,HttpStatus.OK);
 	}
-	@PostMapping(value="/Swipecart/api-user_loginauth", produces = MediaType.APPLICATION_JSON)
-	public ResponseEntity<Object> loginUser(@RequestBody user user,HttpSession session,HttpServletResponse res) throws NotFoundException{
-		HashMap<String, Object> hm=new HashMap<String, Object>();
-		List<user> users=new ArrayList<user>();
-		List<Object> lists=new ArrayList<Object>();
-		users=userAuthservice.UserAuthLogin(user.getEmailid(), user.getPassword());
-	   if(users.size()>0) {
-		   sessionStatus=true;			   
-		    hm.put("resCode","0");
-		    hm.put("resSatus",res.getStatus());
-		    hm.put("sessionStatus", sessionStatus);
-	   }
-	   else {
-		   hm.put("resCode","1");
-		   hm.put("resStatus",res.SC_NOT_FOUND);
-		   hm.put("errMess", "Sorry! We can't recognize you. Try again");
-	   }
-		return new ResponseEntity<Object>(hm,HttpStatus.OK);
-	}
+	
 	@RequestMapping(value="/Swipecart/api/api-logout_auth", produces = MediaType.APPLICATION_JSON)
 	public ResponseEntity<Object> logouUser(HttpServletRequest req,HttpSession session,HttpServletResponse res,HttpStatus status) throws NotFoundException{
 		HashMap<String, Object> hm=new HashMap<String, Object>();
