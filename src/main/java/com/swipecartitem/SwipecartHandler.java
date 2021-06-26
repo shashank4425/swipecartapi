@@ -31,7 +31,6 @@ public class SwipecartHandler {
 	boolean sessionStatus=false;
 	
 	List<CartItem> cartitem=new ArrayList<CartItem>();
-	List<Integer> cartSize = new ArrayList<>();
 	 @PostMapping(value="/Swipecart/api/AddtoCart", produces = javax.ws.rs.core.MediaType.APPLICATION_JSON)
 	 public ResponseEntity<Object> getCartList(@RequestBody CartItem cartitem, HttpServletResponse res, HttpStatus status){
 		 swipecartservice.AddToCart(cartitem);
@@ -43,10 +42,8 @@ public class SwipecartHandler {
 	 @GetMapping(value="/Swipecart/api/GETSwipecartitems", produces = javax.ws.rs.core.MediaType.APPLICATION_JSON)
 	 public ResponseEntity<Object> getCartItems(HttpStatus status, HttpServletResponse res){
 		 HashMap<String, Object> hm=new HashMap<String, Object>();
-		cartitem= swipecartservice.getSwipecrtitems();
-		cartSize.add(cartitem.size());
-		 hm.put("cartSize", cartSize);
-		 return new ResponseEntity<Object>(hm, HttpStatus.OK);
+		cartitem= swipecartservice.getSwipecrtitems();	
+		 return new ResponseEntity<Object>(cartitem, HttpStatus.OK);
 		 
 	 }
 	 @PostMapping(value="/Swipecart/api-user_loginauth", produces = MediaType.APPLICATION_JSON)
@@ -61,7 +58,6 @@ public class SwipecartHandler {
 			    hm.put("resCode","0");
 			    hm.put("resSatus",res.getStatus());
 			    hm.put("sessionStatus", sessionStatus);
-			    hm.put("cartSize", cartSize);
 		   }
 		   else {
 			   hm.put("resCode","1");
