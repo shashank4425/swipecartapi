@@ -71,13 +71,11 @@ public class UserAuthHandler {
 		List<Object> lists=new ArrayList<Object>();
 		users=userAuthservice.UserAuthLogin(user.getEmailid(), user.getPassword());
 	   if(users.size()>0) {
-		   sessionStatus=true;
-		   cartitem= userAuthservice.getSwipecrtitems();			   
+		   sessionStatus=true;			   
 		    hm.put("resCode","0");
 		    hm.put("resSatus",res.getStatus());
 		    hm.put("sessionStatus", sessionStatus);
 		    hm.put("cartLength", cartitem.size());
-		    
 	   }
 	   else {
 		   hm.put("resCode","1");

@@ -13,8 +13,6 @@ public class UserAuthService {
 	@Autowired
 	swipcartUserDataImpl userdataImpl;
 
-	@Autowired
-	SwipecartdataImpl swipecartdataImpl;
 	
 	public List<user> UserAuthLogin(String EMAIL_ID,String PASSWORD) throws NotFoundException {
 		List<user> users=userdataImpl.findByemailId(EMAIL_ID, PASSWORD);
@@ -36,9 +34,5 @@ public class UserAuthService {
 		
 		return userdataImpl.findAll();
 	}
-	
-	
-	public List<CartItem> getSwipecrtitems() {
-		return swipecartdataImpl.findAll();
-	}
+
 }
