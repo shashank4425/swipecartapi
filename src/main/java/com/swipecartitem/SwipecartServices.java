@@ -1,6 +1,7 @@
 package com.swipecartitem;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,7 +23,6 @@ public class SwipecartServices {
 	public List<CartItem> getSwipecrtitems() {
 		return swipecartdataImpl.findAll();
 	}
-
 	public void RemoveItem(int id) {
 		// TODO Auto-generated method stub
 		swipecartdataImpl.deleteById(id);

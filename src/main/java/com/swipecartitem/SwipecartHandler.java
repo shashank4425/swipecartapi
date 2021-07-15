@@ -4,6 +4,7 @@ import java.awt.RenderingHints.Key;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -40,9 +41,9 @@ public class SwipecartHandler {
 	 
 	 
 	 @GetMapping(value="/Swipecart/api/GETSwipecartitems", produces = javax.ws.rs.core.MediaType.APPLICATION_JSON)
-	 public ResponseEntity<Object> getCartItems(HttpStatus status, HttpServletResponse res){
+	 public ResponseEntity<Object> getCartItems(@PathVariable int Id,HttpStatus status, HttpServletResponse res){
 		 HashMap<String, Object> hm=new HashMap<String, Object>();
-		cartitem= swipecartservice.getSwipecrtitems();	
+		 cartitem=swipecartservice.getSwipecrtitems();
 		 return new ResponseEntity<Object>(cartitem, HttpStatus.OK);
 		 
 	 }
@@ -54,8 +55,10 @@ public class SwipecartHandler {
 			users=swipecartservice.UserAuthLogin(user.getEmailid(), user.getPassword());
 	
 		   if(users.size()>0) {
+			   session.setAttribute("sessionId",users.get(0).getId());
 			   sessionStatus=true;			   
 			    hm.put("resCode","0");
+			    hm.put("log_userId", users.get(0).getId());
 			    hm.put("resSatus",res.getStatus());
 			    hm.put("sessionStatus", sessionStatus);
 		   }
