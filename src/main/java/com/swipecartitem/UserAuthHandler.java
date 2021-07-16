@@ -58,11 +58,12 @@ public class UserAuthHandler {
 		   		
 		    userAuthservice.addUser(add_user);
 		    sessionStatus=true;
+		    session.setAttribute("sessionId",add_user.getId());
 			 hm.put("resCode","0");
 			 hm.put("resMess","Registration completed");
 			 hm.put("resSatus",res.getStatus());
+			 hm.put("log_userId", add_user.getId());
 			 hm.put("sessionStatus", sessionStatus);	    
-			session.setAttribute("sessionId",add_user.getId());
 		return new ResponseEntity<Object>(hm,HttpStatus.OK);
 	}
 	
