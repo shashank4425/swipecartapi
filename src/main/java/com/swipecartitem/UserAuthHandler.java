@@ -40,7 +40,7 @@ public class UserAuthHandler {
 
 	@Autowired
 	UserAuthService userAuthservice;
-
+     ArrayList<List> sessionUser=new ArrayList<List>();
 	
 	List<user> user_List=new ArrayList<user>();
 	boolean sessionStatus=false;
@@ -49,13 +49,15 @@ public class UserAuthHandler {
 	public ResponseEntity<Object> UserAuthorisation(HttpSession session,HttpServletResponse res) throws NotFoundException{
 		HashMap<String, Object> hm=new HashMap<String, Object>();
 		  hm.put("sessionId", session.getAttribute("userId"));
-		return new ResponseEntity<Object>(hm,HttpStatus.OK);
+		return new ResponseEntity<Object>(sessionUser,HttpStatus.OK);
 	}
+
 	 @PostMapping(value="/Swipecart/api-user_loginauth", produces = MediaType.APPLICATION_JSON)
 		public ResponseEntity<Object> loginUser(@RequestBody user user,HttpSession session,HttpServletResponse res) throws NotFoundException{
 			HashMap<String, Object> hm=new HashMap<String, Object>();
 			List<user> users=new ArrayList<user>();
 			List<Object> lists=new ArrayList<Object>();
+			String sessionId=users.get(0).getId().toString();
 			users=userAuthservice.UserAuthLogin(user.getEmailid(), user.getPassword());
 		   if(users.size()>0) {
 			   session.setAttribute("sessionId",users.get(0).getId());
@@ -64,6 +66,7 @@ public class UserAuthHandler {
 			    hm.put("log_userId", users.get(0).getId());
 			    hm.put("resSatus",res.getStatus());
 			    hm.put("sessionStatus", sessionStatus);
+			    hm.put("sessionId", sessionUser);
 		   }
 		   else {
 			   hm.put("resCode","1");
