@@ -49,6 +49,7 @@ public class SwipecartHandler {
 		 
 	 }
 	
+	 
 	 @DeleteMapping(value="/Swipecart/api/RemoveSwipecartitem/{id}", produces = javax.ws.rs.core.MediaType.APPLICATION_JSON)
 	 public ResponseEntity<Object> RemoveItem(@PathVariable int id,HttpStatus status){
 		 HashMap<String, String> hm=new HashMap<String, String>();

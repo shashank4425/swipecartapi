@@ -44,30 +44,15 @@ public class UserAuthHandler {
 	
 	List<user> user_List=new ArrayList<user>();
 	boolean sessionStatus=false;
-	HttpSession session;
+
 	@RequestMapping(value="/Swipecart/api-user-auth_token", produces = MediaType.APPLICATION_JSON)
-	public ResponseEntity<Object> UserAuthorisation(HttpServletResponse res) throws NotFoundException{
+	public ResponseEntity<Object> UserAuthorisation(HttpSession session,HttpServletResponse res) throws NotFoundException{
 		HashMap<String, Object> hm=new HashMap<String, Object>();
 		  hm.put("sessionId", session.getAttribute("userId"));
 		return new ResponseEntity<Object>(hm,HttpStatus.OK);
 	}
-	@PostMapping(value="/Swipecart/api-register_auth", produces = MediaType.APPLICATION_JSON)
-	public ResponseEntity<Object> VerifyUser(@RequestBody user add_user, HttpServletResponse res){
-		HashMap<String, Object> hm=new HashMap<String, Object>();
-		List<Object> lists=new ArrayList<Object>();
-		   		
-		    userAuthservice.addUser(add_user);
-		    sessionStatus=true;
-		    session.setAttribute("sessionId",add_user.getId());
-			 hm.put("resCode","0");
-			 hm.put("resMess","Registration completed");
-			 hm.put("resSatus",res.getStatus());
-			 hm.put("log_userId", add_user.getId());
-			 hm.put("sessionStatus", sessionStatus);	    
-		return new ResponseEntity<Object>(hm,HttpStatus.OK);
-	}
 	 @PostMapping(value="/Swipecart/api-user_loginauth", produces = MediaType.APPLICATION_JSON)
-		public ResponseEntity<Object> loginUser(@RequestBody user user,HttpServletResponse res) throws NotFoundException{
+		public ResponseEntity<Object> loginUser(@RequestBody user user,HttpSession session,HttpServletResponse res) throws NotFoundException{
 			HashMap<String, Object> hm=new HashMap<String, Object>();
 			List<user> users=new ArrayList<user>();
 			List<Object> lists=new ArrayList<Object>();
@@ -87,9 +72,24 @@ public class UserAuthHandler {
 		   }
 			return new ResponseEntity<Object>(hm,HttpStatus.OK);
 		}
-	 
+	@PostMapping(value="/Swipecart/api-register_auth", produces = MediaType.APPLICATION_JSON)
+	public ResponseEntity<Object> VerifyUser(@RequestBody user add_user, HttpSession session, HttpServletResponse res){
+		HashMap<String, Object> hm=new HashMap<String, Object>();
+		List<Object> lists=new ArrayList<Object>();
+		   		
+		    userAuthservice.addUser(add_user);
+		    sessionStatus=true;
+		    session.setAttribute("sessionId",add_user.getId());
+			 hm.put("resCode","0");
+			 hm.put("resMess","Registration completed");
+			 hm.put("resSatus",res.getStatus());
+			 hm.put("log_userId", add_user.getId());
+			 hm.put("sessionStatus", sessionStatus);	    
+		return new ResponseEntity<Object>(hm,HttpStatus.OK);
+	}
+	
 	@RequestMapping(value="/Swipecart/api/api-logout_auth", produces = MediaType.APPLICATION_JSON)
-	public ResponseEntity<Object> logouUser(HttpServletRequest req,HttpServletResponse res,HttpStatus status) throws NotFoundException{
+	public ResponseEntity<Object> logouUser(HttpServletRequest req,HttpSession session,HttpServletResponse res,HttpStatus status) throws NotFoundException{
 		HashMap<String, Object> hm=new HashMap<String, Object>();
 		session.removeAttribute("sessionId");
 		 hm.put("sessionStatus", sessionStatus);	
