@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.PathParam;
@@ -47,29 +48,7 @@ public class SwipecartHandler {
 		 return new ResponseEntity<Object>(cartitem, HttpStatus.OK);
 		 
 	 }
-	 @PostMapping(value="/Swipecart/api-user_loginauth", produces = MediaType.APPLICATION_JSON)
-		public ResponseEntity<Object> loginUser(@RequestBody user user,HttpSession session,HttpServletResponse res) throws NotFoundException{
-			HashMap<String, Object> hm=new HashMap<String, Object>();
-			List<user> users=new ArrayList<user>();
-			List<Object> lists=new ArrayList<Object>();
-			users=swipecartservice.UserAuthLogin(user.getEmailid(), user.getPassword());
 	
-		   if(users.size()>0) {
-			   session.setAttribute("sessionId",users.get(0).getId());
-			   sessionStatus=true;			   
-			    hm.put("resCode","0");
-			    hm.put("log_userId", users.get(0).getId());
-			    hm.put("resSatus",res.getStatus());
-			    hm.put("sessionStatus", sessionStatus);
-		   }
-		   else {
-			   hm.put("resCode","1");
-			   hm.put("resStatus",res.SC_NOT_FOUND);
-			   hm.put("errMess", "Sorry! We can't recognize you. Try again");
-		   }
-			return new ResponseEntity<Object>(hm,HttpStatus.OK);
-		}
-	 
 	 @DeleteMapping(value="/Swipecart/api/RemoveSwipecartitem/{id}", produces = javax.ws.rs.core.MediaType.APPLICATION_JSON)
 	 public ResponseEntity<Object> RemoveItem(@PathVariable int id,HttpStatus status){
 		 HashMap<String, String> hm=new HashMap<String, String>();

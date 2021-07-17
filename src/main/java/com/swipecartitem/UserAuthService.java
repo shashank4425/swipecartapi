@@ -26,5 +26,13 @@ public class UserAuthService {
 		
 		return userdataImpl.findAll();
 	}
+	public List<user> UserAuthLogin(String EMAIL_ID,String PASSWORD) throws NotFoundException {
+		List<user> users=userdataImpl.findByemailId(EMAIL_ID, PASSWORD);
+		if(users == null) {
+			 throw new NotFoundException("not found emailid");
+		}
+		return users;
+	}
+	
 
 }
