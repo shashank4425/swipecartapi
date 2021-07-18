@@ -101,8 +101,9 @@ public class UserAuthHandler {
 	@RequestMapping(value="/Swipecart/api/api-logout_auth", produces = MediaType.APPLICATION_JSON)
 	public ResponseEntity<Object> logouUser(HttpServletRequest req,HttpSession session,HttpServletResponse res,HttpStatus status) throws NotFoundException{
 		HashMap<String, Object> hm=new HashMap<String, Object>();
-		session.removeAttribute("sessionId");
-		 hm.put("sessionStatus", sessionStatus);	
+		//session.removeAttribute("sessionId");
+		sessionUser.remove(0); 
+		hm.put("sessionStatus", sessionStatus);	
 		 hm.put("sessionId", session.getAttribute("userId"));
 		 hm.put("resMess", "You have successfully logged out");
 		return new ResponseEntity<Object>(hm,status.OK);
