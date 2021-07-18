@@ -57,7 +57,6 @@ public class UserAuthHandler {
 			HashMap<String, Object> hm=new HashMap<String, Object>();
 			List<user> users=new ArrayList<user>();
 			List<Object> lists=new ArrayList<Object>();
-			String sessionId=users.get(0).getId().toString();
 			users=userAuthservice.UserAuthLogin(user.getEmailid(), user.getPassword());
 		   if(users.size()>0) {
 			   session.setAttribute("sessionId",users.get(0).getId());
@@ -66,7 +65,8 @@ public class UserAuthHandler {
 			    hm.put("log_userId", users.get(0).getId());
 			    hm.put("resSatus",res.getStatus());
 			    hm.put("sessionStatus", sessionStatus);
-			    hm.put("sessionId", sessionUser);
+			   
+			    hm.put("sessionId", sessionUser.size());
 		   }
 		   else {
 			   hm.put("resCode","1");
