@@ -102,8 +102,10 @@ public class UserAuthHandler {
 	public ResponseEntity<Object> logouUser(HttpServletRequest req,HttpSession session,HttpServletResponse res,HttpStatus status) throws NotFoundException{
 		HashMap<String, Object> hm=new HashMap<String, Object>();
 		//session.removeAttribute("sessionId");
-		sessionUser.remove(0); 
+		int sessionSize=sessionUser.size();
+		sessionSize=0;
 		hm.put("sessionStatus", sessionStatus);	
+		hm.put("sessionSize", sessionSize);	
 		 hm.put("sessionId", session.getAttribute("userId"));
 		 hm.put("resMess", "You have successfully logged out");
 		return new ResponseEntity<Object>(hm,status.OK);
