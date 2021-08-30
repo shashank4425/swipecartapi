@@ -42,20 +42,21 @@ public class UserAuthHandler {
 	UserAuthService userAuthservice;
      List<String> sessionUser=new ArrayList<String>();
 	List<user> user_List=new ArrayList<user>();
-	boolean sessionStatus=false;
+	boolean sessionStatus;
 
 	@RequestMapping(value="/Swipecart/api-user-auth_token", produces = MediaType.APPLICATION_JSON)
 	public ResponseEntity<Object> UserAuthorisation(HttpSession session,HttpServletResponse res) throws NotFoundException{
 		HashMap<String, Object> hm=new HashMap<String, Object>();
 		  //hm.put("sessionId", session.getAttribute("userId"));
-		if(sessionUser.size() == 0 ) {
-			sessionStatus=false;
+		System.out.println(sessionUser.size());
+		//if(sessionUser.size() == 0 ) {
+			//sessionStatus=false;
 			return new ResponseEntity<Object>(sessionStatus,HttpStatus.OK);
-		}
-		else {
-			sessionStatus=true;
-			return new ResponseEntity<Object>(sessionStatus,HttpStatus.OK);
-		}
+		//}
+		//else {
+		//	sessionStatus=true;
+			//return new ResponseEntity<Object>(sessionStatus,HttpStatus.OK);
+		//}
 		
 	}
 
@@ -66,7 +67,7 @@ public class UserAuthHandler {
 			List<Object> lists=new ArrayList<Object>();
 			users=userAuthservice.UserAuthLogin(user.getEmailid(), user.getPassword());
 		   if(users.size()>0) {
-			   sessionUser.add(users.get(0).getId().toString());
+			  // sessionUser.add(users.get(0).getId().toString());
 			   session.setAttribute("sessionId",users.get(0).getId());
 			   sessionStatus=true;			   
 			    hm.put("resCode","0");
@@ -103,8 +104,9 @@ public class UserAuthHandler {
 	public ResponseEntity<Object> logouUser(HttpServletRequest req,HttpSession session,HttpServletResponse res,HttpStatus status) throws NotFoundException{
 		HashMap<String, Object> hm=new HashMap<String, Object>();
 		//session.removeAttribute("sessionId");
-		int sessionSize=sessionUser.size();
-		sessionSize=0;
+		//int sessionSize=sessionUser.size();
+		//sessionSize=0;
+		sessionStatus=false;
 		hm.put("sessionStatus", sessionStatus);	
 		hm.put("sessionUser",sessionUser.size());	
 		 hm.put("sessionId", session.getAttribute("userId"));
