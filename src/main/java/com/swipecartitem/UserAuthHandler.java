@@ -72,6 +72,7 @@ public class UserAuthHandler {
 			    hm.put("resCode","0");
 			    hm.put("log_userId", users.get(0).getId());
 			    hm.put("resSatus",res.getStatus());
+			    hm.put("sessionUser",sessionUser.size());
 			    hm.put("sessionStatus", sessionStatus);
 			    
 		   }
