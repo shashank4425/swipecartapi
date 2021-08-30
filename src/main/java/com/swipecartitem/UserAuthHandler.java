@@ -106,7 +106,7 @@ public class UserAuthHandler {
 		int sessionSize=sessionUser.size();
 		sessionSize=0;
 		hm.put("sessionStatus", sessionStatus);	
-		hm.put("sessionSize", sessionSize);	
+		hm.put("sessionUser",sessionUser.size());	
 		 hm.put("sessionId", session.getAttribute("userId"));
 		 hm.put("resMess", "You have successfully logged out");
 		return new ResponseEntity<Object>(hm,status.OK);
